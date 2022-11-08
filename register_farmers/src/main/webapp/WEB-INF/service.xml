@@ -1,0 +1,72 @@
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 6.2.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_6_2_0.dtd">
+
+<service-builder package-path="com.register_farmers">
+	<namespace>aaa</namespace>
+
+	<entity name="District" local-service="true" remote-service="false" table="district">
+		<column name="idDistrict" type="long" primary="true"></column>
+
+        <column name="name" type="String"></column>
+        <column name="code" type="int"></column>
+		<column name="isArchived" type="boolean"></column>
+
+		<column name="farmers" type="Collection" entity="Farmer" mapping-table="Farmers_Districts"></column>
+
+		<finder name="Name" return-type="Collection">
+   			<finder-column name="name" />
+		</finder>
+
+		<finder name="IsArchived" return-type="Collection">
+			<finder-column name="isArchived" />
+		</finder>
+    </entity>
+
+	<entity name="Farmer" local-service="true" remote-service="false" table="farmer">
+		<column name="idFarmer" type="long" primary="true"></column>
+
+		<column name="name" type="String" ></column>
+
+		<column name="districts" type="Collection" entity="District" mapping-table="Farmers_Districts"></column>
+		<column name="isArchived" type="boolean"></column>
+
+		<!-- <column name="opf" type="int"></column> -->
+
+		<column name="districtReg" type="String"></column>
+		<column name="inn" type="String"></column>
+		<column name="ogrn" type="String" ></column>
+		<column name="kpp" type="String" ></column>
+		<column name="opf" type="String" ></column>
+		<column name="date" type="Date"></column>
+
+
+
+		<finder name="IsArchived" return-type="Collection">
+			<finder-column name="isArchived" />
+		</finder>
+
+		<finder name="Inn" return-type="Collection">
+			<finder-column name="inn" />
+		</finder>
+
+
+		<finder name="Name" return-type="Collection">
+   			<finder-column name="name" />
+		</finder>
+
+	</entity>
+
+	<!-- <finder name="M_N" return-type="MachineDevice" unique="true">
+        <finder-column name="machineId" />
+        <finder-column name="nodeId" />
+    </finder> -->
+<!--
+	<entity name="MapDistrict" local-service="true" remote-service="false" table="map_district">
+		<column name="id_district" type="long" primary="false"></column>
+        <column name="id_farmer" type="long" primary="false"></column>
+		<column name="is_archived" type="boolean"></column>
+    </entity> -->
+
+</service-builder>
+
+<!-- <column name="reg_district" type="String" entity="Districts" mapping-table="name"></column> -->
+<!-- <column name="districts_sown_areas" type="Collection" entity="Districts" mapping-table="name"></column> -->
