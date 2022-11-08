@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.register_farmers.model.District">
+		<field name="idDistrict" type="long" />
+		<field name="name" type="String" />
+		<field name="code" type="int" />
+		<field name="isArchived" type="boolean" />
+	</model>
+	<model name="com.register_farmers.model.Farmer">
+		<field name="idFarmer" type="long" />
+		<field name="name" type="String" />
+		<field name="isArchived" type="boolean" />
+		<field name="districtReg" type="String" />
+		<field name="inn" type="String" />
+		<field name="ogrn" type="String" />
+		<field name="kpp" type="String" />
+		<field name="opf" type="String" />
+		<field name="date" type="Date" />
+	</model>
+</model-hints>
