@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sample</groupId>
+    <artifactId>sample-project</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <!-- <name>sample-project</name> -->
+    <!-- <url>http://www.liferay.com</url> -->
+    <properties>
+        <!-- <modelVersion>4.0.0</modelVersion> -->
+        <compiler.maven.source>1.7</compiler.maven.source>
+        <compiler.maven.source>1.7</compiler.maven.source>
+        <liferay.version>6.2.5</liferay.version>
+        <liferayVersion>${liferay.version}</liferayVersion>
+        <liferay.maven.plugin.version>${liferay.version}</liferay.maven.plugin.version>
+
+        <portal.dir>/home/lol/farmers_reg/liferay-portal-6.2-ce-ga6</portal.dir>
+        <tomcat.dir>${portal.dir}/tomcat-7.0.62</tomcat.dir>
+
+        <liferay.app.server.deploy.dir>${tomcat.dir}/webapps</liferay.app.server.deploy.dir>
+        <liferay.app.server.lib.global.dir>${tomcat.dir}/lib/ext</liferay.app.server.lib.global.dir>
+        <liferay.app.server.portal.dir>${tomcat.dir}/webapps/ROOT</liferay.app.server.portal.dir>
+        <liferay.auto.deploy.dir>${portal.dir}/deploy</liferay.auto.deploy.dir>
+    </properties>
+  <modules>
+      <module>register_farmers</module>
+  </modules>
+</project><!-- 61: remote -> com.liferay.maven.archetypes:liferay-portlet-archetype (Provides an archetype to create Liferay portlets.) --><!-- 1: remote -> com.liferay:com.liferay.project.templates.activator (Creates a Liferay module project that customizes the starting and stopping of a Liferay bundle.)
+2: remote -> com.liferay:com.liferay.project.templates.api (Creates a Liferay API module project with an empty public interface.)
+3: remote -> com.liferay:com.liferay.project.templates.content.targeting.report (Creates a Liferay Audience Targeting report as a module project.)
+4: remote -> com.liferay:com.liferay.project.templates.content.targeting.rule (Creates a Liferay Audience Targeting rule as a module project.)
+5: remote -> com.liferay:com.liferay.project.templates.content.targeting.tracking.action (Creates a Liferay Audience Targeting metric as a module project.)
+6: remote -> com.liferay:com.liferay.project.templates.control.menu.entry (Creates a Liferay module project that customizes Liferay Portal's Control Menu.)
+7: remote -> com.liferay:com.liferay.project.templates.form.field (Creates a Liferay form field module project.)
+8: remote -> com.liferay:com.liferay.project.templates.fragment (Creates a Liferay fragment module project that customizes existing Liferay modules.)
+9: remote -> com.liferay:com.liferay.project.templates.freemarker.portlet (Creates a FreeMarker portlet as a module project.)
+10: remote -> com.liferay:com.liferay.project.templates.layout.template (Creates a Liferay layout template module project.)
+11: remote -> com.liferay:com.liferay.project.templates.modules.ext (Creates a Liferay Modules Ext project that overrides an existing Liferay module.)
+12: remote -> com.liferay:com.liferay.project.templates.mvc.portlet (Creates a Liferay MVC portlet as a module project.)
+13: remote -> com.liferay:com.liferay.project.templates.npm.angular.portlet (Creates a Liferay MVC portlet with NPM and Angular support as a module project.)
+14: remote -> com.liferay:com.liferay.project.templates.npm.billboardjs.portlet (Creates a Liferay MVC portlet with npm and Billboard.js support as a module project.)
+15: remote -> com.liferay:com.liferay.project.templates.npm.isomorphic.portlet (Creates a Liferay MVC portlet with npm and isomorphic code support as a module project.)
+16: remote -> com.liferay:com.liferay.project.templates.npm.jquery.portlet (Creates a Liferay MVC portlet with npm and jQuery support as a module project.)
+17: remote -> com.liferay:com.liferay.project.templates.npm.metaljs.portlet (Creates a Liferay MVC portlet with npm and Metal.js support as a module project.)
+18: remote -> com.liferay:com.liferay.project.templates.npm.portlet (Creates a Liferay MVC portlet with npm support as a module project.)
+19: remote -> com.liferay:com.liferay.project.templates.npm.react.portlet (Creates a Liferay MVC portlet with NPM and React support as a module project.)
+20: remote -> com.liferay:com.liferay.project.templates.npm.vuejs.portlet (Creates a Liferay MVC portlet with NPM and Vue.js support as a module project.)
+21: remote -> com.liferay:com.liferay.project.templates.panel.app (Creates a Liferay panel app that customizes a panel category (e.g., Control Panel) by inserting an entry that gives access to an application.)
+22: remote -> com.liferay:com.liferay.project.templates.portlet (Creates a Liferay portlet extending the "javax.portlet.GenericPortlet" class as a module project.)
+23: remote -> com.liferay:com.liferay.project.templates.portlet.configuration.icon (Creates a Liferay module project that customizes a Liferay portlet's configuration icon.)
+24: remote -> com.liferay:com.liferay.project.templates.portlet.provider (Creates a Liferay module project that finds appropriate portlets to manage requests.)
+25: remote -> com.liferay:com.liferay.project.templates.portlet.toolbar.contributor (Creates a Liferay module project that customizes a Liferay portlet's toolbar.)
+26: remote -> com.liferay:com.liferay.project.templates.rest (Creates a Liferay JAX-RS module project.)
+27: remote -> com.liferay:com.liferay.project.templates.rest.builder (Creates a Liferay REST Builder project by generating an API and implementation module.)
+28: remote -> com.liferay:com.liferay.project.templates.service (Creates a Liferay OSGi service module project implementing a chosen interface.)
+29: remote -> com.liferay:com.liferay.project.templates.service.builder (Creates a Liferay Service Builder project by generating an API and implementation module.)
+30: remote -> com.liferay:com.liferay.project.templates.service.wrapper (Creates a Liferay service wrapper module project extending a chosen service wrapper class.)
+31: remote -> com.liferay:com.liferay.project.templates.simulation.panel.entry (Creates a Liferay panel app module project that customizes Liferay Portal's Simulation Menu.)
+32: remote -> com.liferay:com.liferay.project.templates.social.bookmark (Creates a Liferay social bookmark module project that adds a new sharing platform.)
+33: remote -> com.liferay:com.liferay.project.templates.soy.portlet (Creates a Liferay Soy portlet as a module project.)
+34: remote -> com.liferay:com.liferay.project.templates.spring.mvc.portlet (Creates a Spring MVC portlet as a WAR project.)
+35: remote -> com.liferay:com.liferay.project.templates.template.context.contributor (Creates a Liferay module project that injects custom non-JSP template variables into Liferay Portal.)
+36: remote -> com.liferay:com.liferay.project.templates.theme (Creates a Liferay WAR-style theme project.)
+37: remote -> com.liferay:com.liferay.project.templates.theme.contributor (Creates a Liferay module project that packages UI resources (e.g., CSS and JS) independent of a theme to include on a Liferay Portal page.)
+38: remote -> com.liferay:com.liferay.project.templates.war.core.ext (Creates a Liferay WAR-style Core Ext project.)
+39: remote -> com.liferay:com.liferay.project.templates.war.hook (Creates a Liferay WAR-style Hook project.)
+40: remote -> com.liferay:com.liferay.project.templates.war.mvc.portlet (Creates a Liferay WAR-style MVC portlet project.)
+41: remote -> com.liferay:com.liferay.project.templates.workspace (Creates a Liferay Workspace project usable by Gradle and Maven build tools.)
+42: remote -> com.liferay.blade:com.liferay.project.templates.activator (-)
+43: remote -> com.liferay.blade:com.liferay.project.templates.content.targeting.report (-)
+44: remote -> com.liferay.blade:com.liferay.project.templates.content.targeting.rule (-)
+45: remote -> com.liferay.blade:com.liferay.project.templates.content.targeting.tracking.action (-)
+46: remote -> com.liferay.blade:com.liferay.project.templates.freemarker.portlet (-)
+47: remote -> com.liferay.blade:com.liferay.project.templates.js.theme (-)
+48: remote -> com.liferay.blade:com.liferay.project.templates.js.widget (-)
+49: remote -> com.liferay.blade:com.liferay.project.templates.social.bookmark (-)
+50: remote -> com.liferay.faces.archetype:com.liferay.faces.archetype.adf.portlet (Maven archetype for a Liferay ADF portlet)
+51: remote -> com.liferay.faces.archetype:com.liferay.faces.archetype.alloy.portlet (Maven archetype for a Liferay Faces Alloy portlet)
+52: remote -> com.liferay.faces.archetype:com.liferay.faces.archetype.bootsfaces.portlet (Maven archetype for a Liferay BootsFaces portlet)
+53: remote -> com.liferay.faces.archetype:com.liferay.faces.archetype.butterfaces.portlet (Maven archetype for a Liferay ButterFaces portlet)
+54: remote -> com.liferay.faces.archetype:com.liferay.faces.archetype.icefaces.portlet (Maven archetype for a Liferay ICEFaces portlet)
+55: remote -> com.liferay.faces.archetype:com.liferay.faces.archetype.jsf.portlet (Maven archetype for a Liferay JSF portlet)
+56: remote -> com.liferay.faces.archetype:com.liferay.faces.archetype.primefaces.portlet (Maven archetype for a Liferay PrimeFaces portlet)
+57: remote -> com.liferay.faces.archetype:com.liferay.faces.archetype.richfaces.portlet (Maven archetype for a Liferay RichFaces portlet)
+58: remote -> com.liferay.maven.archetypes:liferay-ext-archetype (Provides an archetype to create Liferay extensions.)
+59: remote -> com.liferay.maven.archetypes:liferay-hook-archetype (Provides an archetype to create Liferay hooks.)
+60: remote -> com.liferay.maven.archetypes:liferay-layouttpl-archetype (Provides an archetype to create Liferay layout templates.)
+61: remote -> com.liferay.maven.archetypes:liferay-portlet-archetype (Provides an archetype to create Liferay portlets.)
+62: remote -> com.liferay.maven.archetypes:liferay-portlet-icefaces-archetype (Provides an archetype to create Liferay ICEfaces portlets.)
+63: remote -> com.liferay.maven.archetypes:liferay-portlet-jsf-archetype (Provides an archetype to create Liferay JSF portlets.)
+64: remote -> com.liferay.maven.archetypes:liferay-portlet-liferay-faces-alloy-archetype (Provides an archetype to create Liferay Faces Alloy portlets.)
+65: remote -> com.liferay.maven.archetypes:liferay-portlet-primefaces-archetype (Provides an archetype to create Liferay PrimeFaces portlets.)
+66: remote -> com.liferay.maven.archetypes:liferay-portlet-richfaces-archetype (Provides an archetype to create Liferay RichFaces portlets.)
+67: remote -> com.liferay.maven.archetypes:liferay-portlet-spring-mvc-archetype (Provides an archetype to create Liferay Spring MVC portlets.)
+68: remote -> com.liferay.maven.archetypes:liferay-servicebuilder-archetype (Provides an archetype to create Liferay Service Builder portlets.)
+69: remote -> com.liferay.maven.archetypes:liferay-theme-archetype (Provides an archetype to create Liferay themes.)
+70: remote -> com.liferay.maven.archetypes:liferay-web-archetype (Provides an archetype to create Liferay webs.)
+71: remote -> com.liferay.portletmvc4spring.archetype:com.liferay.portletmvc4spring.archetype.form.jsp.portlet (Maven archetype for PortletMVC4Spring with JSP form views)
+72: remote -> com.liferay.portletmvc4spring.archetype:com.liferay.portletmvc4spring.archetype.form.thymeleaf.portlet (Maven archetype for PortletMVC4Spring with Thymeleaf form views)
+73: remote -> com.vaadin:vaadin-archetype-liferay-portlet (This archetype creates a Vaadin Portlet project for Liferay 7.3+ container and can be used as a project base.)
+74: remote -> com.vaadin:vaadin-archetype-liferay-shared (This archetype creates a Vaadin Portlet shared static resource bundle WAR deployed into Liferay 7.3+ container --><!-- // public Area addArea(String name, int id) throws SystemException
+// {
+//     //получаем уникальный код для ключевого поля таблицы
+//     // long id = counterLocalService.increment();
+//     //создаем новый объект Friend с уникальным id
+//     Area area = AreaLocalServiceUtil.createArea(name);
+//     //заполняем свойства объекта указанными данными
+//     area.setName(name);
+//     area.setId(id);
+//     //получаем текущую дату
+//
+//     //которую устанавливаем датой создания объекта
+//     // area.setCreateDate(now);
+//
+//     //добавляем созданный объект Friend в базу данных
+//     AreaLocalServiceUtil.addArea(area);
+//
+//     return area;
+// } -->
