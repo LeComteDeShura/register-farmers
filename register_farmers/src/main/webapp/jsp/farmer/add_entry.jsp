@@ -87,7 +87,7 @@
         <aui:select id="select" name="select district" multiple="true">
             <c:forEach var="district" items="${districts}" >
                 <aui:option cssClass="add a${ district.getName() }" selected="false"
-                            value="${ district.getName() }" >
+                            value="${ district.getIdDistrict() }" >
                         ${ district.getName() }
                 </aui:option>
             </c:forEach>
@@ -95,7 +95,7 @@
         </aui:col>
 
         <aui:col width="<%= 33 %>" >
-                <aui:input  type="hidden" label="" id="selectedDistricts" name="selectedDistricts" required="false" />
+                <aui:input   label="" id="selectedDistricts" name="selectedDistricts" required="false" />
                 <aui:button value="add district" name="add" type="button" onclick="addDistrict();" />
                 <aui:button value="del district" name="delete" type="button" onclick="deleteDistrict();" />
         </aui:col>
@@ -104,7 +104,7 @@
             <aui:select label="selected district" id="selected" name="selected"  multiple="true">
                 <c:forEach var="district" items="${districts}" >
                     <aui:option cssClass="selectedDis delete d${ district.getName() }" selected="false"
-                                value="${ district.getName() }" >
+                                value="${ district.getIdDistrict() }" >
                             ${ district.getName() }
                     </aui:option>
                 </c:forEach>
@@ -142,65 +142,71 @@
         });
     });
 
+    var namespace_select = '#<portlet:namespace />select';
+    var namespace_selected = '#<portlet:namespace />selected';
+    var namespace_selectedDistricts = '#<portlet:namespace />selectedDistricts';
+
     function addDistrict() {
       var A = new AUI();
-      var o = A.one('#<portlet:namespace />select').get('childNodes');
-      var options = o.get('.add');
+      var o = A.one(namespace_select).get('childNodes');
+      var options_ = o.get('.add');
 
+      for (var i = 0; i < options_.length; i++) {
+        if (options_[i].get('selected')) {
+          options_[i].hide();
 
-      for (const option of options) {
+          var id = options_[i].get('value').replace(/\s+/g, '');
+          var name = options_[i].get('text').replace(/\s+/g, '');
 
-        if (option.get('selected')) {
-          option.hide();
-          option.removeAttribute("selected");
-          var name = option.get('text').replace(/\s+/g, '');
           var selected = A.one('.d' + name);
-          selected.set("selected", "selected");
-          var temp = A.one('#<portlet:namespace />selectedDistricts');
-          selectedDistricts.push(name);
-          temp.set('value', selectedDistricts);
           selected.show();
+
+          var temp = A.one(namespace_selectedDistricts);
+          selectedDistricts.push(id);
+          temp.set('value', selectedDistricts);
         }
       }
     }
 
-
     function deleteDistrict() {
       var A = new AUI();
-      var o = A.one('#<portlet:namespace />selected').get('childNodes');
-      var options = o.get('.delete');
+      var o = A.one(namespace_selected).get('childNodes');
+      var options_ = o.get('.delete');
 
-      for (const  option of options) {
-        if (option.get('selected')) {
-          option.hide();
-          var name = option.get('text').replace(/\s+/g, '');
+      for (var i = 0; i < options_.length; i++) {
+        if (options_[i].get('selected')) {
+          options_[i].hide();
+
+          var id = options_[i].get('value').replace(/\s+/g, '');
+          var name = options_[i].get('text').replace(/\s+/g, '');
+
           var selected = A.one('.a' + name);
-          var temp = A.one('#<portlet:namespace />selectedDistricts');
-          selectedDistricts = selectedDistricts.filter(e => e !== name);
-          temp.set('value', selectedDistricts);
           selected.show();
+
+          var temp = A.one(namespace_selectedDistricts);
+          selectedDistricts = selectedDistricts.filter(e === e !== id);
+          temp.set('value', selectedDistricts);
         }
       }
     }
 
     var datePicker;
     YUI().use('aui-base','aui-datepicker', function(Y) {
-        datePicker = new Y.DatePicker({
-            trigger: '#<portlet:namespace />date',
-            mask: '%d/%m/%Y',
-            popover: {
-                zIndex: 10,
-            },
-            calendar: {
-                maximumDate: new Date()
-            }
-        });
+       datePicker = new Y.DatePicker({
+           trigger: '#<portlet:namespace />date',
+           mask: '%d/%m/%Y',
+           popover: {
+               zIndex: 10,
+           },
+           calendar: {
+               maximumDate: new Date()
+           }
+       });
     });
 
     function openDatePicker() {
-        datePicker.getPopover().show();
+       datePicker.getPopover().show();
     }
-
 
 
 
