@@ -34,8 +34,8 @@
     String name = farmer.getName();
     boolean isArchived = farmer.getIsArchived();
 
-    String districtReg = farmer.getDistrictReg();
-    String INN = farmer.getName();
+    String districtReg = FarmerLocalServiceUtil.getNameDistrictReg(farmer.getIdDistrictReg());
+    String INN = farmer.getInn();
     String OGRN = farmer.getOgrn();
     String KPP = farmer.getKpp();
     String OPF = farmer.getOpf();
@@ -43,8 +43,8 @@
     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     String date = dateFormat.format(date_);
 
-    String tempSelectedDistricts = FarmerLocalServiceUtil.getDistricts(farmer.getIdFarmer());
-    System.out.println("asd " + tempSelectedDistricts);
+    String tempSelectedDistrictNames = FarmerLocalServiceUtil.getDistrictNames(farmer.getIdFarmer());
+    String tempSelectedDistrictIds = FarmerLocalServiceUtil.getDistrictIds(farmer.getIdFarmer());
 
     int totalDistricts = DistrictLocalServiceUtil.getDistrictsCountByIsArchived(false);
     List<District> districts = DistrictLocalServiceUtil.getDistrictsByIsArchived(false, 0, totalDistricts);
@@ -60,46 +60,6 @@
     <aui:input name="idFarmer" type="hidden" value="<%= idFarmer %>"  required="false" />
 
     <aui:input label="name organization" name="name" value="<%= name %>"/>
-    <aui:input name="INN"  value="<%= INN %>" >
-        <aui:validator  name="custom"  errorMessage="Please enter a value equal to 12 or 10." >
-            function (val, fieldNode, ruleValue) {
-                var result = false;
-                if (val.length == 12 || val.length == 10) {
-                    result = true;
-                }
-                return result;
-            }
-        </aui:validator>
-        <aui:validator name="number"></aui:validator>
-    </aui:input >
-
-    <aui:input name="OGRN" value="<%= OGRN %>" >
-        <aui:validator  name="custom"  errorMessage="Please enter a value equal to 13." >
-            function (val, fieldNode, ruleValue) {
-                var result = false;
-                if (val.length == 13) {
-                    result = true;
-                }
-                return result;
-            }
-        </aui:validator>
-        <aui:validator name="number"></aui:validator>
-    </aui:input >
-
-    <aui:input name="KPP" value="<%= KPP %>" >
-        <aui:validator  name="custom"  errorMessage="Please enter a value equal to 9." >
-            function (val, fieldNode, ruleValue) {
-                var result = false;
-                if (val.length == 9) {
-                    result = true;
-                }
-                return result;
-            }
-        </aui:validator>
-        <aui:validator name="number"></aui:validator>
-    </aui:input >
-
-    <aui:input label="registration district" name="districtReg" value="<%= districtReg %>"/>
 
     <aui:select name="OPF" >
         <aui:option value="" selected='<%= OPF.equals("") %>' >select</aui:option>
@@ -109,12 +69,140 @@
     </aui:select>
 
 
+    <aui:input name="INN"  value="<%= INN %>" >
+        <aui:validator  name="custom"  errorMessage="Please enter a value equal to 12 or 10." >
+            function (val, fieldNode, ruleValue) {
+                var result = false;
+                var selectedValue = A.one('#<portlet:namespace />OPF').get('value');
+                if ((val.length == 12 || val.length == 10)) {
+                    result = true;
+                } else if(val.length == 0 || selectedValue != ""){
+                    result = true;
+                }
+                return result;
+            }
+        </aui:validator>
+
+        <aui:validator  name="custom"  errorMessage="Please enter number." >
+            function (val, fieldNode, ruleValue) {
+                var result = false;
+                if (!isNaN(val) || val.length == 0) {
+                    result = true;
+                }
+                return result;
+            }
+        </aui:validator>
+
+        <aui:validator  name="custom"  errorMessage="Please enter a value equal to 12." >
+            function (val, fieldNode, ruleValue) {
+                var result = false;
+                var selectedValue = A.one('#<portlet:namespace />OPF').get('value');
+                if (val.length == 12 && selectedValue == "individual") {
+                    result = true;
+                } else if(val.length == 0 || selectedValue != "individual"){
+                    result = true;
+                }
+                return result;
+            }
+        </aui:validator>
+
+        <aui:validator  name="custom"  errorMessage="Please enter a value equal to 10." >
+            function (val, fieldNode, ruleValue) {
+                var result = false;
+                var selectedValue = A.one('#<portlet:namespace />OPF').get('value');
+                if (val.length == 10 && (selectedValue == "entity" || selectedValue == "individual_e")) {
+                    result = true;
+                } else if(val.length == 0 || selectedValue == "" || selectedValue == "individual"){
+                    result = true;
+                }
+                return result;
+            }
+        </aui:validator>
+    </aui:input >
+
+
+    <aui:input name="OGRN" value="<%= OGRN %>" >
+        <aui:validator  name="custom"  errorMessage="Please enter a value equal to 13." >
+            function (val, fieldNode, ruleValue) {
+                var result = false;
+                if (val.length == 13 || val.length == 0) {
+                    result = true;
+                }
+                return result;
+            }
+        </aui:validator>
+
+        <aui:validator  name="custom"  errorMessage="Please enter number." >
+            function (val, fieldNode, ruleValue) {
+                var result = false;
+                if (!isNaN(val) || val.length == 0) {
+                    result = true;
+                }
+                return result;
+            }
+        </aui:validator>
+    </aui:input >
+
+
+    <aui:input name="KPP" value="<%= KPP %>" >
+        <aui:validator  name="custom"  errorMessage="Please enter a value equal to 9." >
+            function (val, fieldNode, ruleValue) {
+                var result = false;
+                if (val.length == 9 || val.length == 0) {
+                    result = true;
+                }
+                return result;
+            }
+        </aui:validator>
+
+        <aui:validator  name="custom"  errorMessage="Please enter number." >
+            function (val, fieldNode, ruleValue) {
+                var result = false;
+                if (!isNaN(val) || val.length == 0) {
+                    result = true;
+                }
+                return result;
+            }
+        </aui:validator>
+    </aui:input >
+
+
+    <aui:input label="registration district" list="districtNames" name="districtReg" required="false" >
+        <aui:validator  name="custom"  errorMessage="district does not exist." >
+            function (val, fieldNode, ruleValue) {
+                var result = false;
+                if(val.length == 0){
+                    result = true;
+                }
+                for(var i=0; i < districtNames.length; i++){
+                    console.log(val);
+                    console.log(districtNames[i]);
+                    if (districtNames[i] == val) {
+                        result = true;
+                        break;
+                    }
+                }
+
+                return result;
+            }
+        </aui:validator>
+    </aui:input >
+
+    <datalist id="districtNames">
+        <c:forEach var="district" items="${districts}" >
+            <option cssClass="add a${ district.getName() }" selected="false"
+                        value="${ district.getName() }" >
+                    ${ district.getName() }
+            </option>
+        </c:forEach>
+    </datalist>
+
     <aui:row>
         <aui:col width="<%= 33 %>">
         <aui:select id="select" name="select district" multiple="true">
             <c:forEach var="district" items="${districts}" >
                 <aui:option cssClass="add a${ district.getName() }" selected="false"
-                            value="${ district.getName() }" >
+                            value="${ district.getIdDistrict() }" >
                         ${ district.getName() }
                 </aui:option>
             </c:forEach>
@@ -122,7 +210,7 @@
         </aui:col>
 
         <aui:col width="<%= 33 %>" >
-                <aui:input  type="hidden" label="" id="selectedDistricts" name="selectedDistricts" required="false" />
+                <aui:input   label="" id="selectedDistricts" name="selectedDistricts" required="false" />
                 <aui:button value="add district" name="add" type="button" onclick="addDistrict();" />
                 <aui:button value="del district" name="delete" type="button" onclick="deleteDistrict();" />
         </aui:col>
@@ -131,7 +219,7 @@
             <aui:select label="selected district" id="selected" name="selected"  multiple="true">
                 <c:forEach var="district" items="${districts}" >
                     <aui:option cssClass="selectedDis delete d${ district.getName() }" selected="false"
-                                value="${ district.getName() }" >
+                                value="${ district.getIdDistrict() }" >
                             ${ district.getName() }
                     </aui:option>
                 </c:forEach>
@@ -159,8 +247,25 @@
 
 
 <aui:script>
-    var tempSD = "<%= tempSelectedDistricts %>";
-    var selectedDistricts = tempSD.split(',');
+    var tempIds = "<%= tempSelectedDistrictIds %>";
+    var tempNames = "<%= tempSelectedDistrictNames %>";
+
+    var selectedDistricts = tempIds.split(',').filter(Boolean);
+    var selectedDistrictNames = tempNames.split(',').filter(Boolean);
+
+    var namespace_select = '#<portlet:namespace />select';
+    var namespace_selected = '#<portlet:namespace />selected';
+    var namespace_selectedDistricts = '#<portlet:namespace />selectedDistricts';
+
+    console.log(namespace_selectedDistricts);
+    console.log(selectedDistrictNames);
+    console.log(selectedDistricts);
+
+
+    var districtNames = [];
+    <c:forEach var="district" items="${districts}" >
+        districtNames.push("${ district.getName() }");
+    </c:forEach>
 
     AUI().use('aui-base',function(A){
         var selected=A.all(".selectedDis");
@@ -169,12 +274,12 @@
             object.hide();
         });
 
-        var sd = A.one('#<portlet:namespace />selectedDistricts');
+        var sd = A.one(namespace_selectedDistricts);
         sd.set('value', selectedDistricts);
 
-        for(const el of selectedDistricts){
-            var selectedOption = A.one('.d' + el);
-            var selectOption = A.one('.a' + el);
+        for(var i = 0; i < selectedDistrictNames.length; i++) {
+            var selectedOption = A.one('.d' + selectedDistrictNames[i]);
+            var selectOption = A.one('.a' + selectedDistrictNames[i]);
 
             selectOption.hide();
             selectedOption.show();
@@ -182,42 +287,48 @@
     });
 
     function addDistrict() {
-        var A = new AUI();
-        var o = A.one('#<portlet:namespace />select').get('childNodes');
-        var options = o.get('.add');
-        for (const option of options) {
-            if (option.get('selected')) {
-                option.hide();
-                option.removeAttribute("selected");
-                var name = option.get('text').replace(/\s+/g, '');
-                var selected = A.one('.d' + name);
-                selected.set("selected", "selected");
-                var temp = A.one('#<portlet:namespace />selectedDistricts');
-                selectedDistricts.push(name);
-                temp.set('value', selectedDistricts);
-                selected.show();
-            }
+      var A = new AUI();
+      var o = A.one(namespace_select).get('childNodes');
+      var options_ = o.get('.add');
+
+      for (var i = 0; i < options_.length; i++) {
+        if (options_[i].get('selected')) {
+          options_[i].hide();
+
+          var id = options_[i].get('value').replace(/\s+/g, '');
+          var name = options_[i].get('text').replace(/\s+/g, '');
+
+          var selected = A.one('.d' + name);
+          selected.show();
+
+          var temp = A.one(namespace_selectedDistricts);
+          selectedDistricts.push(id);
+          temp.set('value', selectedDistricts);
         }
-    }
-
-
-  function deleteDistrict() {
-    var A = new AUI();
-    var o = A.one('#<portlet:namespace />selected').get('childNodes');
-    var options = o.get('.delete');
-
-    for (const  option of options) {
-      if (option.get('selected')) {
-        option.hide();
-        var name = option.get('text').replace(/\s+/g, '');
-        var selected = A.one('.a' + name);
-        var temp = A.one('#<portlet:namespace />selectedDistricts');
-        selectedDistricts = selectedDistricts.filter(e => e !== name);
-        temp.set('value', selectedDistricts);
-        selected.show();
       }
     }
-  }
+
+    function deleteDistrict() {
+      var A = new AUI();
+      var o = A.one(namespace_selected).get('childNodes');
+      var options_ = o.get('.delete');
+
+      for (var i = 0; i < options_.length; i++) {
+        if (options_[i].get('selected')) {
+          options_[i].hide();
+
+          var id = options_[i].get('value').replace(/\s+/g, '');
+          var name = options_[i].get('text').replace(/\s+/g, '');
+
+          var selected = A.one('.a' + name);
+          selected.show();
+
+          var temp = A.one(namespace_selectedDistricts);
+          selectedDistricts = selectedDistricts.filter(e => e !== id);
+          temp.set('value', selectedDistricts);
+        }
+      }
+    }
 
 var datePicker;
 YUI().use('aui-base','aui-datepicker', function(Y) {

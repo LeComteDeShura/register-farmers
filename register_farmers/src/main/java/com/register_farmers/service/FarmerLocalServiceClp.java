@@ -94,6 +94,10 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
     private String[] _methodParameterTypes42;
     private String _methodName43;
     private String[] _methodParameterTypes43;
+    private String _methodName44;
+    private String[] _methodParameterTypes44;
+    private String _methodName45;
+    private String[] _methodParameterTypes45;
 
     public FarmerLocalServiceClp(InvokableLocalService invokableLocalService) {
         _invokableLocalService = invokableLocalService;
@@ -291,16 +295,24 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
 
         _methodParameterTypes41 = new String[] { "java.lang.String" };
 
-        _methodName42 = "getDistricts";
+        _methodName42 = "getDistrictIds";
 
         _methodParameterTypes42 = new String[] { "long" };
 
-        _methodName43 = "getFarmers";
+        _methodName43 = "getDistrictNames";
 
-        _methodParameterTypes43 = new String[] {
+        _methodParameterTypes43 = new String[] { "long" };
+
+        _methodName44 = "getFarmers";
+
+        _methodParameterTypes44 = new String[] {
                 "java.lang.String", "java.lang.String", "java.lang.String",
                 "java.lang.String", "java.lang.String", "java.lang.String"
             };
+
+        _methodName45 = "getNameDistrictReg";
+
+        _methodParameterTypes45 = new String[] { "long" };
     }
 
     @Override
@@ -1431,13 +1443,39 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
     }
 
     @Override
-    public java.lang.String getDistricts(long idFarmer)
+    public java.lang.String getDistrictIds(long idFarmer)
         throws com.liferay.portal.kernel.exception.SystemException {
         Object returnObj = null;
 
         try {
             returnObj = _invokableLocalService.invokeMethod(_methodName42,
                     _methodParameterTypes42, new Object[] { idFarmer });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (java.lang.String) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public java.lang.String getDistrictNames(long idFarmer)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName43,
+                    _methodParameterTypes43, new Object[] { idFarmer });
         } catch (Throwable t) {
             t = ClpSerializer.translateThrowable(t);
 
@@ -1465,8 +1503,8 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
         Object returnObj = null;
 
         try {
-            returnObj = _invokableLocalService.invokeMethod(_methodName43,
-                    _methodParameterTypes43,
+            returnObj = _invokableLocalService.invokeMethod(_methodName44,
+                    _methodParameterTypes44,
                     new Object[] {
                         ClpSerializer.translateInput(name),
                         
@@ -1496,5 +1534,31 @@ public class FarmerLocalServiceClp implements FarmerLocalService {
         }
 
         return (java.util.List<com.register_farmers.model.Farmer>) ClpSerializer.translateOutput(returnObj);
+    }
+
+    @Override
+    public java.lang.String getNameDistrictReg(long id)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        Object returnObj = null;
+
+        try {
+            returnObj = _invokableLocalService.invokeMethod(_methodName45,
+                    _methodParameterTypes45, new Object[] { id });
+        } catch (Throwable t) {
+            t = ClpSerializer.translateThrowable(t);
+
+            if (t instanceof com.liferay.portal.kernel.exception.SystemException) {
+                throw (com.liferay.portal.kernel.exception.SystemException) t;
+            }
+
+            if (t instanceof RuntimeException) {
+                throw (RuntimeException) t;
+            } else {
+                throw new RuntimeException(t.getClass().getName() +
+                    " is not a valid exception");
+            }
+        }
+
+        return (java.lang.String) ClpSerializer.translateOutput(returnObj);
     }
 }

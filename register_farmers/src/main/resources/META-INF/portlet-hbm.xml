@@ -20,7 +20,7 @@
 		</id>
 		<property name="name" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="isArchived" type="com.liferay.portal.dao.orm.hibernate.BooleanType" />
-		<property name="districtReg" type="com.liferay.portal.dao.orm.hibernate.StringType" />
+		<property name="idDistrictReg" type="com.liferay.portal.dao.orm.hibernate.LongType" />
 		<property name="inn" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="ogrn" type="com.liferay.portal.dao.orm.hibernate.StringType" />
 		<property name="kpp" type="com.liferay.portal.dao.orm.hibernate.StringType" />

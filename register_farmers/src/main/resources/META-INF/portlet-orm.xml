@@ -25,7 +25,7 @@
 			<id name="idFarmer" />
 			<basic name="name" />
 			<basic name="isArchived" />
-			<basic name="districtReg" />
+			<basic name="idDistrictReg" />
 			<basic name="inn" />
 			<basic name="ogrn" />
 			<basic name="kpp" />

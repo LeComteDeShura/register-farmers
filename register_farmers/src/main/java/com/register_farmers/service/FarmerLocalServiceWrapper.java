@@ -471,9 +471,15 @@ public class FarmerLocalServiceWrapper implements FarmerLocalService,
     }
 
     @Override
-    public java.lang.String getDistricts(long idFarmer)
+    public java.lang.String getDistrictIds(long idFarmer)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return _farmerLocalService.getDistricts(idFarmer);
+        return _farmerLocalService.getDistrictIds(idFarmer);
+    }
+
+    @Override
+    public java.lang.String getDistrictNames(long idFarmer)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return _farmerLocalService.getDistrictNames(idFarmer);
     }
 
     @Override
@@ -484,6 +490,12 @@ public class FarmerLocalServiceWrapper implements FarmerLocalService,
         throws com.liferay.portal.kernel.exception.SystemException {
         return _farmerLocalService.getFarmers(name, INN, districtReg,
             isArchived, startDate, endDate);
+    }
+
+    @Override
+    public java.lang.String getNameDistrictReg(long id)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return _farmerLocalService.getNameDistrictReg(id);
     }
 
     /**

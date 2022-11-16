@@ -1869,7 +1869,7 @@ public class FarmerPersistenceImpl extends BasePersistenceImpl<Farmer>
         farmerImpl.setIdFarmer(farmer.getIdFarmer());
         farmerImpl.setName(farmer.getName());
         farmerImpl.setIsArchived(farmer.isIsArchived());
-        farmerImpl.setDistrictReg(farmer.getDistrictReg());
+        farmerImpl.setIdDistrictReg(farmer.getIdDistrictReg());
         farmerImpl.setInn(farmer.getInn());
         farmerImpl.setOgrn(farmer.getOgrn());
         farmerImpl.setKpp(farmer.getKpp());

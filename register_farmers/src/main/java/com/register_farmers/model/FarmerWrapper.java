@@ -40,7 +40,7 @@ public class FarmerWrapper implements Farmer, ModelWrapper<Farmer> {
         attributes.put("idFarmer", getIdFarmer());
         attributes.put("name", getName());
         attributes.put("isArchived", getIsArchived());
-        attributes.put("districtReg", getDistrictReg());
+        attributes.put("idDistrictReg", getIdDistrictReg());
         attributes.put("inn", getInn());
         attributes.put("ogrn", getOgrn());
         attributes.put("kpp", getKpp());
@@ -70,10 +70,10 @@ public class FarmerWrapper implements Farmer, ModelWrapper<Farmer> {
             setIsArchived(isArchived);
         }
 
-        String districtReg = (String) attributes.get("districtReg");
+        Long idDistrictReg = (Long) attributes.get("idDistrictReg");
 
-        if (districtReg != null) {
-            setDistrictReg(districtReg);
+        if (idDistrictReg != null) {
+            setIdDistrictReg(idDistrictReg);
         }
 
         String inn = (String) attributes.get("inn");
@@ -198,23 +198,23 @@ public class FarmerWrapper implements Farmer, ModelWrapper<Farmer> {
     }
 
     /**
-    * Returns the district reg of this farmer.
+    * Returns the id district reg of this farmer.
     *
-    * @return the district reg of this farmer
+    * @return the id district reg of this farmer
     */
     @Override
-    public java.lang.String getDistrictReg() {
-        return _farmer.getDistrictReg();
+    public long getIdDistrictReg() {
+        return _farmer.getIdDistrictReg();
     }
 
     /**
-    * Sets the district reg of this farmer.
+    * Sets the id district reg of this farmer.
     *
-    * @param districtReg the district reg of this farmer
+    * @param idDistrictReg the id district reg of this farmer
     */
     @Override
-    public void setDistrictReg(java.lang.String districtReg) {
-        _farmer.setDistrictReg(districtReg);
+    public void setIdDistrictReg(long idDistrictReg) {
+        _farmer.setIdDistrictReg(idDistrictReg);
     }
 
     /**

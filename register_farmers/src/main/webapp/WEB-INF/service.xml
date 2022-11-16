@@ -12,6 +12,8 @@
 
 		<column name="farmers" type="Collection" entity="Farmer" mapping-table="Farmers_Districts"></column>
 
+		<!-- <column name="districtRegasd" type="Collection" entity="Farmer" mapping-table="id_district"></column> -->
+
 		<finder name="Name" return-type="Collection">
    			<finder-column name="name" />
 		</finder>
@@ -31,7 +33,8 @@
 
 		<!-- <column name="opf" type="int"></column> -->
 
-		<column name="districtReg" type="String"></column>
+		<column name="idDistrictReg" type="long"></column>
+		
 		<column name="inn" type="String"></column>
 		<column name="ogrn" type="String" ></column>
 		<column name="kpp" type="String" ></column>

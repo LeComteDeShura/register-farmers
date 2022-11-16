@@ -59,7 +59,10 @@ public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
          Farmer farmer = FarmerLocalServiceUtil.createFarmer(idFarmer);
 
          farmer.setName(name);
-         farmer.setDistrictReg(districtReg);
+         long id_ = -1;
+         if(districtReg != "")
+            id_ = DistrictLocalServiceUtil.getDistrictByName(districtReg).getIdDistrict();
+         farmer.setIdDistrictReg(id_);
          farmer.setInn(INN);
          farmer.setOgrn(OGRN);
          farmer.setKpp(KPP);
@@ -68,11 +71,17 @@ public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
          farmer.setIsArchived(isArchived);
 
          if (districts != null && districts.length != 0) {
+
+             for (int i = 0; i < districts.length; i++) {
+                 System.out.println("dis " + districts[i]);
+             }
+
+         }
+
+         if (districts != null && districts.length != 0 && districts[0] != "") {
              long districtIds[] = new long[districts.length];
-             for (int i = 0; i < districts.length ; i++) {
-                 long id = DistrictLocalServiceUtil.getDistrictByName(districts[i]).getIdDistrict();
-                 districtIds[i] = id;
-                 System.out.println(idFarmer + " " + id);
+             for (int i = 0; i < districts.length; i++) {
+                 districtIds[i] = Long.parseLong(districts[i]);
              }
              DistrictLocalServiceUtil.addFarmerDistricts(idFarmer,  districtIds);
          }
@@ -119,22 +128,37 @@ public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
          return farmer.size() != 0;
      }
 
-     @Override
-     public String getDistricts(long idFarmer) throws SystemException
-     {
-         List<District> districts = DistrictLocalServiceUtil.getFarmerDistricts(idFarmer);
-         ArrayList<String> districtNames = new ArrayList<String>();
-         String result = "";
 
-         for (District district : districts) {
-             districtNames.add(district.getName());
-             result += district.getName() + ",";
-         }
+     public String getDistrictIds(long idFarmer) throws SystemException
+    {
+        String result = "";
+        try {
+            List<District> districts = DistrictLocalServiceUtil.getFarmerDistricts(idFarmer);
 
-         result = result.substring(0, result.length()-1);
-         return result;
+            for (District district : districts) {
+                result += district.getIdDistrict() + ",";
+            }
 
-     }
+            result = result.substring(0, result.length()-1);
+        } catch(Exception e) {}
+        return result;
+    }
+
+    public String getDistrictNames(long idFarmer) throws SystemException
+   {
+       String result = "";
+       try {
+           List<District> districts = DistrictLocalServiceUtil.getFarmerDistricts(idFarmer);
+
+           for (District district : districts) {
+               result += district.getName() + ",";
+           }
+
+           result = result.substring(0, result.length()-1);
+       } catch(Exception e) {}
+       return result;
+   }
+
 
 
     @Override
@@ -177,6 +201,17 @@ public class FarmerLocalServiceImpl extends FarmerLocalServiceBaseImpl {
         return farmers;
     }
 
+
+    @Override
+    public String getNameDistrictReg(long id) throws SystemException
+    {
+        try {
+            District district = DistrictLocalServiceUtil.getDistrict(id);
+            return district.getName();
+        } catch(Exception e) {
+            return "";
+        }
+    }
 }
 
 

@@ -440,9 +440,14 @@ public class FarmerLocalServiceUtil {
         return getService().isExistByInn(inn);
     }
 
-    public static java.lang.String getDistricts(long idFarmer)
+    public static java.lang.String getDistrictIds(long idFarmer)
         throws com.liferay.portal.kernel.exception.SystemException {
-        return getService().getDistricts(idFarmer);
+        return getService().getDistrictIds(idFarmer);
+    }
+
+    public static java.lang.String getDistrictNames(long idFarmer)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getService().getDistrictNames(idFarmer);
     }
 
     public static java.util.List<com.register_farmers.model.Farmer> getFarmers(
@@ -453,6 +458,11 @@ public class FarmerLocalServiceUtil {
         return getService()
                    .getFarmers(name, INN, districtReg, isArchived, startDate,
             endDate);
+    }
+
+    public static java.lang.String getNameDistrictReg(long id)
+        throws com.liferay.portal.kernel.exception.SystemException {
+        return getService().getNameDistrictReg(id);
     }
 
     public static void clearService() {

@@ -24,7 +24,7 @@ public class FarmerCacheModel implements CacheModel<Farmer>, Externalizable {
     public long idFarmer;
     public String name;
     public boolean isArchived;
-    public String districtReg;
+    public long idDistrictReg;
     public String inn;
     public String ogrn;
     public String kpp;
@@ -41,8 +41,8 @@ public class FarmerCacheModel implements CacheModel<Farmer>, Externalizable {
         sb.append(name);
         sb.append(", isArchived=");
         sb.append(isArchived);
-        sb.append(", districtReg=");
-        sb.append(districtReg);
+        sb.append(", idDistrictReg=");
+        sb.append(idDistrictReg);
         sb.append(", inn=");
         sb.append(inn);
         sb.append(", ogrn=");
@@ -71,12 +71,7 @@ public class FarmerCacheModel implements CacheModel<Farmer>, Externalizable {
         }
 
         farmerImpl.setIsArchived(isArchived);
-
-        if (districtReg == null) {
-            farmerImpl.setDistrictReg(StringPool.BLANK);
-        } else {
-            farmerImpl.setDistrictReg(districtReg);
-        }
+        farmerImpl.setIdDistrictReg(idDistrictReg);
 
         if (inn == null) {
             farmerImpl.setInn(StringPool.BLANK);
@@ -118,7 +113,7 @@ public class FarmerCacheModel implements CacheModel<Farmer>, Externalizable {
         idFarmer = objectInput.readLong();
         name = objectInput.readUTF();
         isArchived = objectInput.readBoolean();
-        districtReg = objectInput.readUTF();
+        idDistrictReg = objectInput.readLong();
         inn = objectInput.readUTF();
         ogrn = objectInput.readUTF();
         kpp = objectInput.readUTF();
@@ -138,12 +133,7 @@ public class FarmerCacheModel implements CacheModel<Farmer>, Externalizable {
         }
 
         objectOutput.writeBoolean(isArchived);
-
-        if (districtReg == null) {
-            objectOutput.writeUTF(StringPool.BLANK);
-        } else {
-            objectOutput.writeUTF(districtReg);
-        }
+        objectOutput.writeLong(idDistrictReg);
 
         if (inn == null) {
             objectOutput.writeUTF(StringPool.BLANK);

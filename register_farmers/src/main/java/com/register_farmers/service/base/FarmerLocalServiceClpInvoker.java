@@ -95,6 +95,10 @@ public class FarmerLocalServiceClpInvoker {
     private String[] _methodParameterTypes65;
     private String _methodName66;
     private String[] _methodParameterTypes66;
+    private String _methodName67;
+    private String[] _methodParameterTypes67;
+    private String _methodName68;
+    private String[] _methodParameterTypes68;
 
     public FarmerLocalServiceClpInvoker() {
         _methodName0 = "addFarmer";
@@ -290,16 +294,24 @@ public class FarmerLocalServiceClpInvoker {
 
         _methodParameterTypes64 = new String[] { "java.lang.String" };
 
-        _methodName65 = "getDistricts";
+        _methodName65 = "getDistrictIds";
 
         _methodParameterTypes65 = new String[] { "long" };
 
-        _methodName66 = "getFarmers";
+        _methodName66 = "getDistrictNames";
 
-        _methodParameterTypes66 = new String[] {
+        _methodParameterTypes66 = new String[] { "long" };
+
+        _methodName67 = "getFarmers";
+
+        _methodParameterTypes67 = new String[] {
                 "java.lang.String", "java.lang.String", "java.lang.String",
                 "java.lang.String", "java.lang.String", "java.lang.String"
             };
+
+        _methodName68 = "getNameDistrictReg";
+
+        _methodParameterTypes68 = new String[] { "long" };
     }
 
     public Object invokeMethod(String name, String[] parameterTypes,
@@ -564,16 +576,26 @@ public class FarmerLocalServiceClpInvoker {
 
         if (_methodName65.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes65, parameterTypes)) {
-            return FarmerLocalServiceUtil.getDistricts(((Long) arguments[0]).longValue());
+            return FarmerLocalServiceUtil.getDistrictIds(((Long) arguments[0]).longValue());
         }
 
         if (_methodName66.equals(name) &&
                 Arrays.deepEquals(_methodParameterTypes66, parameterTypes)) {
+            return FarmerLocalServiceUtil.getDistrictNames(((Long) arguments[0]).longValue());
+        }
+
+        if (_methodName67.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes67, parameterTypes)) {
             return FarmerLocalServiceUtil.getFarmers((java.lang.String) arguments[0],
                 (java.lang.String) arguments[1],
                 (java.lang.String) arguments[2],
                 (java.lang.String) arguments[3],
                 (java.lang.String) arguments[4], (java.lang.String) arguments[5]);
+        }
+
+        if (_methodName68.equals(name) &&
+                Arrays.deepEquals(_methodParameterTypes68, parameterTypes)) {
+            return FarmerLocalServiceUtil.getNameDistrictReg(((Long) arguments[0]).longValue());
         }
 
         throw new UnsupportedOperationException();

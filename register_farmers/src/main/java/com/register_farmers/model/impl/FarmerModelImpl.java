@@ -48,14 +48,14 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
             { "idFarmer", Types.BIGINT },
             { "name", Types.VARCHAR },
             { "isArchived", Types.BOOLEAN },
-            { "districtReg", Types.VARCHAR },
+            { "idDistrictReg", Types.BIGINT },
             { "inn", Types.VARCHAR },
             { "ogrn", Types.VARCHAR },
             { "kpp", Types.VARCHAR },
             { "opf", Types.VARCHAR },
             { "date_", Types.TIMESTAMP }
         };
-    public static final String TABLE_SQL_CREATE = "create table farmer (idFarmer LONG not null primary key,name VARCHAR(75) null,isArchived BOOLEAN,districtReg VARCHAR(75) null,inn VARCHAR(75) null,ogrn VARCHAR(75) null,kpp VARCHAR(75) null,opf VARCHAR(75) null,date_ DATE null)";
+    public static final String TABLE_SQL_CREATE = "create table farmer (idFarmer LONG not null primary key,name VARCHAR(75) null,isArchived BOOLEAN,idDistrictReg LONG,inn VARCHAR(75) null,ogrn VARCHAR(75) null,kpp VARCHAR(75) null,opf VARCHAR(75) null,date_ DATE null)";
     public static final String TABLE_SQL_DROP = "drop table farmer";
     public static final String ORDER_BY_JPQL = " ORDER BY farmer.idFarmer ASC";
     public static final String ORDER_BY_SQL = " ORDER BY farmer.idFarmer ASC";
@@ -93,7 +93,7 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
     private boolean _isArchived;
     private boolean _originalIsArchived;
     private boolean _setOriginalIsArchived;
-    private String _districtReg;
+    private long _idDistrictReg;
     private String _inn;
     private String _originalInn;
     private String _ogrn;
@@ -143,7 +143,7 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
         attributes.put("idFarmer", getIdFarmer());
         attributes.put("name", getName());
         attributes.put("isArchived", getIsArchived());
-        attributes.put("districtReg", getDistrictReg());
+        attributes.put("idDistrictReg", getIdDistrictReg());
         attributes.put("inn", getInn());
         attributes.put("ogrn", getOgrn());
         attributes.put("kpp", getKpp());
@@ -173,10 +173,10 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
             setIsArchived(isArchived);
         }
 
-        String districtReg = (String) attributes.get("districtReg");
+        Long idDistrictReg = (Long) attributes.get("idDistrictReg");
 
-        if (districtReg != null) {
-            setDistrictReg(districtReg);
+        if (idDistrictReg != null) {
+            setIdDistrictReg(idDistrictReg);
         }
 
         String inn = (String) attributes.get("inn");
@@ -272,17 +272,13 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
     }
 
     @Override
-    public String getDistrictReg() {
-        if (_districtReg == null) {
-            return StringPool.BLANK;
-        } else {
-            return _districtReg;
-        }
+    public long getIdDistrictReg() {
+        return _idDistrictReg;
     }
 
     @Override
-    public void setDistrictReg(String districtReg) {
-        _districtReg = districtReg;
+    public void setIdDistrictReg(long idDistrictReg) {
+        _idDistrictReg = idDistrictReg;
     }
 
     @Override
@@ -395,7 +391,7 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
         farmerImpl.setIdFarmer(getIdFarmer());
         farmerImpl.setName(getName());
         farmerImpl.setIsArchived(getIsArchived());
-        farmerImpl.setDistrictReg(getDistrictReg());
+        farmerImpl.setIdDistrictReg(getIdDistrictReg());
         farmerImpl.setInn(getInn());
         farmerImpl.setOgrn(getOgrn());
         farmerImpl.setKpp(getKpp());
@@ -477,13 +473,7 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
 
         farmerCacheModel.isArchived = getIsArchived();
 
-        farmerCacheModel.districtReg = getDistrictReg();
-
-        String districtReg = farmerCacheModel.districtReg;
-
-        if ((districtReg != null) && (districtReg.length() == 0)) {
-            farmerCacheModel.districtReg = null;
-        }
+        farmerCacheModel.idDistrictReg = getIdDistrictReg();
 
         farmerCacheModel.inn = getInn();
 
@@ -538,8 +528,8 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
         sb.append(getName());
         sb.append(", isArchived=");
         sb.append(getIsArchived());
-        sb.append(", districtReg=");
-        sb.append(getDistrictReg());
+        sb.append(", idDistrictReg=");
+        sb.append(getIdDistrictReg());
         sb.append(", inn=");
         sb.append(getInn());
         sb.append(", ogrn=");
@@ -576,8 +566,8 @@ public class FarmerModelImpl extends BaseModelImpl<Farmer>
         sb.append(getIsArchived());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>districtReg</column-name><column-value><![CDATA[");
-        sb.append(getDistrictReg());
+            "<column><column-name>idDistrictReg</column-name><column-value><![CDATA[");
+        sb.append(getIdDistrictReg());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>inn</column-name><column-value><![CDATA[");

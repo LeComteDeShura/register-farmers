@@ -381,7 +381,11 @@ public interface FarmerLocalService extends BaseLocalService,
         throws com.liferay.portal.kernel.exception.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
-    public java.lang.String getDistricts(long idFarmer)
+    public java.lang.String getDistrictIds(long idFarmer)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.lang.String getDistrictNames(long idFarmer)
         throws com.liferay.portal.kernel.exception.SystemException;
 
     @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
@@ -389,5 +393,9 @@ public interface FarmerLocalService extends BaseLocalService,
         java.lang.String name, java.lang.String INN,
         java.lang.String districtReg, java.lang.String isArchived,
         java.lang.String startDate, java.lang.String endDate)
+        throws com.liferay.portal.kernel.exception.SystemException;
+
+    @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+    public java.lang.String getNameDistrictReg(long id)
         throws com.liferay.portal.kernel.exception.SystemException;
 }

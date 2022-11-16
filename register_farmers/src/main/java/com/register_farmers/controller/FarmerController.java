@@ -44,6 +44,12 @@ public class FarmerController extends MVCPortlet {
             boolean isArchived = Boolean.parseBoolean(actionRequest.getParameter("isArchived"));
             String date_ = actionRequest.getParameter("date");
             String districts[] =  actionRequest.getParameter("selectedDistricts").split(",");
+            System.out.println(districts.length);
+            // String districts[];
+            //
+            // if (tempDistricts.length() != 0) {
+            //     districts = tempDistricts.split(",");
+            // }
 
             if (date_ == "")
                 date_ = "01/01/1970";
@@ -60,7 +66,7 @@ public class FarmerController extends MVCPortlet {
                 actionResponse.setRenderParameter("mvcPath", "/jsp/farmer/add_entry.jsp");
                 if (FarmerLocalServiceUtil.isExistByInn(INN)) {
                     SessionErrors.add(actionRequest, "farmer.exist.INN");
-                    actionResponse.setRenderParameter( "errINN", "'" + INN + "' farmer existed.");
+                    actionResponse.setRenderParameter( "errINN", "'" + INN + "' INN existed.");
                     actionResponse.setRenderParameter("mvcPath", "/jsp/farmer/add_entry.jsp");
                 }
             } else {
@@ -137,16 +143,16 @@ public class FarmerController extends MVCPortlet {
                 SessionMessages.add(actionRequest, ((LiferayPortletConfig)portletConfig).getPortletId() + SessionMessages.KEY_SUFFIX_HIDE_DEFAULT_ERROR_MESSAGE);
 
                 actionResponse.setRenderParameter("idFarmer", String.valueOf(id));
-                actionResponse.setRenderParameter("errName", "'" + nameFarmer + "' disctrict existed.");
+                actionResponse.setRenderParameter("errName", "'" + nameFarmer + "' farmer existed.");
 
-                SessionErrors.add(actionRequest, "district.exist.name");
+                SessionErrors.add(actionRequest, "farmer.exist.name");
                 actionResponse.setRenderParameter("mvcPath", "/jsp/farmer/edit_entry.jsp");
 
                 farmer_ = FarmerLocalServiceUtil.getFarmerByInn(INN);
                 if (id != farmer_.getIdFarmer()) {
-                    actionResponse.setRenderParameter("errINN", "'" + INN + "' disctrict existed.");
+                    actionResponse.setRenderParameter("errINN", "'" + INN + "' INN existed.");
 
-                    SessionErrors.add(actionRequest, "district.exist.INN");
+                    SessionErrors.add(actionRequest, "farmer.exist.INN");
                     actionResponse.setRenderParameter("mvcPath", "/jsp/farmer/edit_entry.jsp");
                 }
                 return;

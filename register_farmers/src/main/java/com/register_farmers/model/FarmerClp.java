@@ -23,7 +23,7 @@ public class FarmerClp extends BaseModelImpl<Farmer> implements Farmer {
     private long _idFarmer;
     private String _name;
     private boolean _isArchived;
-    private String _districtReg;
+    private long _idDistrictReg;
     private String _inn;
     private String _ogrn;
     private String _kpp;
@@ -72,7 +72,7 @@ public class FarmerClp extends BaseModelImpl<Farmer> implements Farmer {
         attributes.put("idFarmer", getIdFarmer());
         attributes.put("name", getName());
         attributes.put("isArchived", getIsArchived());
-        attributes.put("districtReg", getDistrictReg());
+        attributes.put("idDistrictReg", getIdDistrictReg());
         attributes.put("inn", getInn());
         attributes.put("ogrn", getOgrn());
         attributes.put("kpp", getKpp());
@@ -102,10 +102,10 @@ public class FarmerClp extends BaseModelImpl<Farmer> implements Farmer {
             setIsArchived(isArchived);
         }
 
-        String districtReg = (String) attributes.get("districtReg");
+        Long idDistrictReg = (Long) attributes.get("idDistrictReg");
 
-        if (districtReg != null) {
-            setDistrictReg(districtReg);
+        if (idDistrictReg != null) {
+            setIdDistrictReg(idDistrictReg);
         }
 
         String inn = (String) attributes.get("inn");
@@ -211,21 +211,21 @@ public class FarmerClp extends BaseModelImpl<Farmer> implements Farmer {
     }
 
     @Override
-    public String getDistrictReg() {
-        return _districtReg;
+    public long getIdDistrictReg() {
+        return _idDistrictReg;
     }
 
     @Override
-    public void setDistrictReg(String districtReg) {
-        _districtReg = districtReg;
+    public void setIdDistrictReg(long idDistrictReg) {
+        _idDistrictReg = idDistrictReg;
 
         if (_farmerRemoteModel != null) {
             try {
                 Class<?> clazz = _farmerRemoteModel.getClass();
 
-                Method method = clazz.getMethod("setDistrictReg", String.class);
+                Method method = clazz.getMethod("setIdDistrictReg", long.class);
 
-                method.invoke(_farmerRemoteModel, districtReg);
+                method.invoke(_farmerRemoteModel, idDistrictReg);
             } catch (Exception e) {
                 throw new UnsupportedOperationException(e);
             }
@@ -412,7 +412,7 @@ public class FarmerClp extends BaseModelImpl<Farmer> implements Farmer {
         clone.setIdFarmer(getIdFarmer());
         clone.setName(getName());
         clone.setIsArchived(getIsArchived());
-        clone.setDistrictReg(getDistrictReg());
+        clone.setIdDistrictReg(getIdDistrictReg());
         clone.setInn(getInn());
         clone.setOgrn(getOgrn());
         clone.setKpp(getKpp());
@@ -475,8 +475,8 @@ public class FarmerClp extends BaseModelImpl<Farmer> implements Farmer {
         sb.append(getName());
         sb.append(", isArchived=");
         sb.append(getIsArchived());
-        sb.append(", districtReg=");
-        sb.append(getDistrictReg());
+        sb.append(", idDistrictReg=");
+        sb.append(getIdDistrictReg());
         sb.append(", inn=");
         sb.append(getInn());
         sb.append(", ogrn=");
@@ -513,8 +513,8 @@ public class FarmerClp extends BaseModelImpl<Farmer> implements Farmer {
         sb.append(getIsArchived());
         sb.append("]]></column-value></column>");
         sb.append(
-            "<column><column-name>districtReg</column-name><column-value><![CDATA[");
-        sb.append(getDistrictReg());
+            "<column><column-name>idDistrictReg</column-name><column-value><![CDATA[");
+        sb.append(getIdDistrictReg());
         sb.append("]]></column-value></column>");
         sb.append(
             "<column><column-name>inn</column-name><column-value><![CDATA[");

@@ -33,9 +33,9 @@
 		<liferay-ui:search-container-column-text name="OPF" value="<%= farmer.getOpf() %>" />
 
 		<liferay-ui:search-container-column-text name="registration date" property="date" />
-		<liferay-ui:search-container-column-text name="" value="<%= FarmerLocalServiceUtil.getDistricts(farmer.getIdFarmer()) %>" />
-
-		<liferay-ui:search-container-column-text name="district sown areas" value="<%= farmer.getDistrictReg() %>" />
+		<%-- <liferay-ui:search-container-column-text name="" value="<%= FarmerLocalServiceUtil.getDistricts(farmer.getIdFarmer()) %>" /> --%>
+		<liferay-ui:search-container-column-text name="registration district" value="<%= FarmerLocalServiceUtil.getNameDistrictReg(farmer.getIdDistrictReg()) %>" />
+		<liferay-ui:search-container-column-text name="district sown areas" value="<%= FarmerLocalServiceUtil.getDistrictNames(farmer.getIdFarmer()) %>" />
         <liferay-ui:search-container-column-text name="" >
             <aui:form name="edit" id="edit" method="post" action="<%= editEntryActionURL %>">
                 <aui:input name="idFarmer" value="<%= farmer.getIdFarmer() %>" type="hidden"/>

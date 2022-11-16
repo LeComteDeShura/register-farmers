@@ -16,7 +16,7 @@ public class FarmerSoap implements Serializable {
     private long _idFarmer;
     private String _name;
     private boolean _isArchived;
-    private String _districtReg;
+    private long _idDistrictReg;
     private String _inn;
     private String _ogrn;
     private String _kpp;
@@ -32,7 +32,7 @@ public class FarmerSoap implements Serializable {
         soapModel.setIdFarmer(model.getIdFarmer());
         soapModel.setName(model.getName());
         soapModel.setIsArchived(model.getIsArchived());
-        soapModel.setDistrictReg(model.getDistrictReg());
+        soapModel.setIdDistrictReg(model.getIdDistrictReg());
         soapModel.setInn(model.getInn());
         soapModel.setOgrn(model.getOgrn());
         soapModel.setKpp(model.getKpp());
@@ -114,12 +114,12 @@ public class FarmerSoap implements Serializable {
         _isArchived = isArchived;
     }
 
-    public String getDistrictReg() {
-        return _districtReg;
+    public long getIdDistrictReg() {
+        return _idDistrictReg;
     }
 
-    public void setDistrictReg(String districtReg) {
-        _districtReg = districtReg;
+    public void setIdDistrictReg(long idDistrictReg) {
+        _idDistrictReg = idDistrictReg;
     }
 
     public String getInn() {

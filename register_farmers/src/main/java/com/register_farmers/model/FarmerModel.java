@@ -96,19 +96,18 @@ public interface FarmerModel extends BaseModel<Farmer> {
     public void setIsArchived(boolean isArchived);
 
     /**
-     * Returns the district reg of this farmer.
+     * Returns the id district reg of this farmer.
      *
-     * @return the district reg of this farmer
+     * @return the id district reg of this farmer
      */
-    @AutoEscape
-    public String getDistrictReg();
+    public long getIdDistrictReg();
 
     /**
-     * Sets the district reg of this farmer.
+     * Sets the id district reg of this farmer.
      *
-     * @param districtReg the district reg of this farmer
+     * @param idDistrictReg the id district reg of this farmer
      */
-    public void setDistrictReg(String districtReg);
+    public void setIdDistrictReg(long idDistrictReg);
 
     /**
      * Returns the inn of this farmer.

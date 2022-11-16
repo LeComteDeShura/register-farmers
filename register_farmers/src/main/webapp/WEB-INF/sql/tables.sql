@@ -4,6 +4,12 @@ create table aaa_Farmers_Districts (
 	primary key (idDistrict, idFarmer)
 );
 
+create table aaa_id_asdt (
+	idDistrict LONG not null,
+	idFarmer LONG not null,
+	primary key (idDistrict, idFarmer)
+);
+
 create table district (
 	idDistrict LONG not null primary key,
 	name VARCHAR(75) null,
@@ -15,7 +21,7 @@ create table farmer (
 	idFarmer LONG not null primary key,
 	name VARCHAR(75) null,
 	isArchived BOOLEAN,
-	districtReg VARCHAR(75) null,
+	idDistrictReg LONG,
 	inn VARCHAR(75) null,
 	ogrn VARCHAR(75) null,
 	kpp VARCHAR(75) null,

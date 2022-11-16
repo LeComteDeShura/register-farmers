@@ -1,6 +1,0 @@
-/src/main/java/com/register_farmers/*
-/src/main/resources/
-/target
-!pom.xml
-!/src/main/java/com/register_farmers/service/impl
-!/src/main/java/com/register_farmers/controller
